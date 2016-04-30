@@ -16,54 +16,8 @@
     <script src="js/jquery.keyboard.extension-typing.js"></script>
     <script src="js/jquery.keyboard.extension-previewkeyset.js"></script>
     <script src="layouts/keyboard-layouts-microsoft.min.js" charset="utf-8"></script>
-
-    <script>
-        $(function(){
-            showKb = function(layout){
-                var kb = $('#search').getkeyboard();
-                kb.options.layout = layout;
-                kb.redraw();
-                switch(layout.substring(3)) {
-                    case 'United Kingdom':
-                        document.getElementById('lang').textContent = "English";
-                        break;
-                    default:
-                        document.getElementById('lang').textContent = layout.substring(3);
-                }
-            };
-            $('#search').keyboard({
-                layout: 'qwerty',
-                alwaysOpen: true,
-                usePreview: false,
-                css: {
-                            container: 'center-block well',
-                            buttonDefault: 'btn-secondary',
-                            buttonHover: 'btn-primary',
-                            buttonDisabled: 'disabled'
-                        }
-                    })
-                    // activate the typing extension
-                    .addTyping({
-                        showTyping: true,
-                        delay: 200
-                    })
-                    .previewKeyset();
-        });
-        function OpenInNewTab(url) {
-            var win = window.open(url, '_blank');
-            win.focus();
-        }
-    </script>
-    <style>
-        body { background: #181818; color: #ddd; height: 98%; margin: 0 auto; padding: 0}
-        .vertical-center {
-            min-height: 100%;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        .rtl {text-align: right}
-    </style>
+    <script>$(function(){showKb=function(b){var a=$("#search").getkeyboard();a.options.layout=b;a.redraw();switch(b.substring(3)){case"United Kingdom":document.getElementById("lang").textContent="English";break;default:document.getElementById("lang").textContent=b.substring(3)}};$("#search").keyboard({layout:"qwerty",alwaysOpen:true,usePreview:false,css:{container:"center-block well",buttonDefault:"btn-secondary",buttonHover:"btn-primary",buttonDisabled:"disabled"}}).addTyping({showTyping:true,delay:200}).previewKeyset()});function OpenInNewTab(a){var b=window.open(a,"_blank");b.focus()};</script>
+    <style>body{background:#181818;color:#ddd;height:98%;margin:0 auto;padding:0}.vertical-center{min-height:100%;min-height:100vh;display:flex;align-items:center}.rtl{text-align:right}</style>
 </head>
 <body>
 <div class="vertical-center">
