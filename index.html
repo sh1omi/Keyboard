@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual KeyBoard</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.min.css" rel="stylesheet">
+    <link href="css/keyboard.min.css" rel="stylesheet">
+    <script src="js/jquery-latest.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.keyboard.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.keyboard.extension-typing.js"></script>
+    <script src="js/jquery.keyboard.extension-previewkeyset.js"></script>
+    <script src="layouts/keyboard-layouts-microsoft.min.js" charset="utf-8"></script>
+
+    <script>
+        $(function(){
+            showKb = function(layout){
+                var kb = $('#search').getkeyboard();
+                kb.options.layout = layout;
+                kb.redraw();
+                switch(layout.substring(3)) {
+                    case 'United Kingdom':
+                        document.getElementById('lang').textContent = "English";
+                        break;
+                    default:
+                        document.getElementById('lang').textContent = layout.substring(3);
+                }
+            };
+            $('#search').keyboard({
+                layout: 'qwerty',
+                alwaysOpen: true,
+                usePreview: false,
+                css: {
+                            container: 'center-block well',
+                            buttonDefault: 'btn-secondary',
+                            buttonHover: 'btn-primary',
+                            buttonDisabled: 'disabled'
+                        }
+                    })
+                    // activate the typing extension
+                    .addTyping({
+                        showTyping: true,
+                        delay: 200
+                    })
+                    .previewKeyset();
+        });
+        function OpenInNewTab(url) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        }
+    </script>
+    <style>
+        body { background: #181818; color: #ddd; height: 98%; margin: 0 auto; padding: 0}
+        .vertical-center {
+            min-height: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .rtl {text-align: right}
+    </style>
+</head>
+<body>
+<div class="vertical-center">
+    <div class="container">
+        <div class="row">
+            <form action="https://www.google.com/search" method="get">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button id="lang" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:showKb('ms-United Kingdom')">English</a>
+                            <a class="dropdown-item" href="javascript:showKb('ms-Hebrew')">Hebrew</a>
+                            <a class="dropdown-item" href="javascript:showKb('ms-Russian')">Russian</a>
+                        </div>
+                    </div>
+                    <input id="search" type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button" onclick="OpenInNewTab('https://www.google.com/#q='+document.getElementById('search').value)">Google</button>
+                        <button class="btn btn-secondary" type="button" onclick="OpenInNewTab('https://www.youtube.com/results?search_query='+document.getElementById('search').value)">YouTube</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
